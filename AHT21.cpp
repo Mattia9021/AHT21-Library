@@ -60,7 +60,7 @@ int AHT21::begin(unsigned char pAddress)
  */
 int AHT21::read(float *pTemp, float *pHum, bool pForceRead) 
 {
-  int rError;
+  int rError = 0;
 
   if(pForceRead)
   {
@@ -111,7 +111,7 @@ int AHT21::read(float *pTemp, float *pHum, bool pForceRead)
   *pTemp = rmAHT21OldTemp;
   *pHum = rmAHT21OldHum;
 
-  return(0);
+  return(rError);
 }
 
 /*! ---------------------------------------------------------------------------------------------

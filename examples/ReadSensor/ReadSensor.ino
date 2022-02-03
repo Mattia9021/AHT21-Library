@@ -5,11 +5,18 @@ AHT21 sensorAHT21(Wire);
 
 void setup(void) 
 {
+  int rError;
   Serial.begin(115200);
 
   Wire.begin();
 
-  sensorAHT21.begin();
+  rError = sensorAHT21.begin();
+
+  if (rError)
+  {
+    Serial.println("Failed to initialize AHT21");
+    delay(100000);
+  }
 
 }
 
@@ -24,11 +31,11 @@ void loop(void)
   {
     Serial.print("Temperature: ");
     Serial.print(temp);
-    Serial.print("Humidity: ");
+    Serial.print(" Humidity: ");
     Serial.println(hum);
   }
   else
     Serial.println("Failed to read AHT21");
   
-  delay(100);
+  delay(1000);
 }
